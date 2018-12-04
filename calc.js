@@ -16,7 +16,7 @@ function numbHandlers(){
     document.getElementById('multiply').addEventListener ('click', function(){pressOperatorButton('*')});
     document.getElementById('decimal').addEventListener ('click', function(){pressNumberButton('.')});
     document.getElementById('modulus').addEventListener ('click', function(){pressOperatorButton('%')});
-    document.getElementById('smile').addEventListener ('click', function(){ alert('No functiont yet, stop stressing me out!!')   });
+    document.getElementById('smile').addEventListener ('click', function(){ alert('No function yet, stop stressing me out!!')   });
 
     document.getElementById('clear').addEventListener ('click', init);
     document.getElementById('back').addEventListener ('click', pressBckButton );
@@ -31,7 +31,7 @@ function numbHandlers(){
 function init(){
     document.querySelector('#display').value = 0
     operatorClicked = false;
-    something = false;
+    numberClicked = false;
 };
 init();
 
@@ -39,37 +39,40 @@ var operatorClicked = false;
 var operator = '';
 var getnumb = 0;
 var answer = 0;
-var something;
+var numberClicked;
 
 
 function pressNumberButton(btn){
     var display = document.querySelector('#display');
-
-    //if (display.value.length <=10){
-        if(operatorClicked) {
-            display.value = btn;
-            operatorClicked = false;
-            something = true        //so that when the operator is clicked again, it adds the solution
-        } else if (display.value === '0'){
-            display.value = btn;
-            operatorClicked = false;
-        }else{
-            display.value += btn;
-            
+       
+            if(operatorClicked) {
+                display.value = btn;
+                operatorClicked = false;
+                numberClicked = true        
+        }   else if (display.value === '0'){
+                display.value = btn;
+                operatorClicked = false;
+        }   else{
+                if (display.value.length < 10){
+               display.value += btn;
+                }else {
+                    display.value = display.value
+                }
             }
-        }//else{
-           // alert('There is a limit dumbass')
-       // }
-   //}
+          
+   }
+
+
+
 
 function pressOperatorButton(btn){
     //get string in display
-    if (something){
+    if (numberClicked){
         equalsto()
         getnumb = document.querySelector('#display').value;
         operator = btn;
         operatorClicked = true;
-        something = false;
+        numberClicked = false;
     }else{
         getnumb = document.querySelector('#display').value;
         operator = btn;
@@ -84,8 +87,8 @@ function pressBckButton(){
 }
 
 function equalsto(){
+
     var numb2 = document.querySelector('#display').value
-    console.log(numb2)
 
     switch(operator) {
         case '+':
@@ -108,8 +111,11 @@ function equalsto(){
             break;        
     }
     document.querySelector('#display').value = answer;
-    operatorClicked = true;
+    operatorClicked = false;
+    numberClicked = false;
 }
+
+
 
 
 
