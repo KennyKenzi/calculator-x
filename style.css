@@ -1,0 +1,29 @@
+
+.form{
+    border: 3px outset black;
+    width: 218px
+}
+
+.buttons{ 
+    border: 1px outset black;  
+    background-color: lightBlue;
+    height: 50px;
+    width: 50px;
+    font-size: 150%;
+    
+}
+
+.display{ 
+    border: 2px outset black;  
+    background-color: wheat;
+    height: 50px;
+    width: 207px;
+    font-size: 150%;  
+}
+
+#smile{
+    background-color: orangered;
+}
+.smiles{
+    background-color:  lightBlue;
+}
