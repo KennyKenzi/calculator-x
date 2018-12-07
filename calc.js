@@ -37,9 +37,11 @@ init();
 
 var operatorClicked = false;
 var operator = '';
-var getnumb = 0;
+var numb1 = 0;
+var numb2;
 var answer = 0;
 var numberClicked;
+var equalClicked = false;
 
 
 function pressNumberButton(btn){
@@ -59,7 +61,7 @@ function pressNumberButton(btn){
                     display.value = display.value
                 }
             }
-          
+          numb2 = document.querySelector('#display').value
    }
 
 
@@ -69,50 +71,54 @@ function pressOperatorButton(btn){
     //get string in display
     if (numberClicked){
         equalsto()
-        getnumb = document.querySelector('#display').value;
+        numb1 = document.querySelector('#display').value;
+        console.log(numb1)
         operator = btn;
         operatorClicked = true;
         numberClicked = false;
     }else{
-        getnumb = document.querySelector('#display').value;
+        numb1 = document.querySelector('#display').value;
         operator = btn;
         operatorClicked = true;
     }
 }
     
 function pressBckButton(){
-    var getnumb = document.querySelector('#display').value;
-    getnumb = getnumb.substring(0, getnumb.length-1)
-    display.value = getnumb
+    var numb1 = document.querySelector('#display').value;
+    numb1 = numb1.substring(0, numb1.length-1)
+    display.value = numb1
 }
+
+
+var numb2 
 
 function equalsto(){
 
-    var numb2 = document.querySelector('#display').value
-
-    switch(operator) {
-        case '+':
-            answer = parseFloat(getnumb) + parseFloat(numb2);
-            break;
-        case '-':
-            answer = parseFloat(getnumb) - parseFloat(numb2);
-            break;
-        case '/':
-            answer = parseFloat(getnumb) / parseFloat(numb2);
-            break;
-        case '*':
-            answer = parseFloat(getnumb) * parseFloat(numb2);
-            break;
-        case '%':
-            answer = parseFloat(getnumb) % parseFloat(numb2);
-            break;
-        default:
-            alert("Fuck you granpa John!");
-            break;        
-    }
-    document.querySelector('#display').value = answer;
+        switch(operator) {
+            case '+':
+                answer = parseFloat(numb1) + parseFloat(numb2);
+                break;
+            case '-':
+                answer = parseFloat(numb1) - parseFloat(numb2);
+                break;
+            case '/':
+                answer = parseFloat(numb1) / parseFloat(numb2);
+                break;
+            case '*':
+                answer = parseFloat(numb1) * parseFloat(numb2);
+                break;
+            case '%':
+                answer = parseFloat(numb1) % parseFloat(numb2);
+                break;
+            default:
+                alert("Fuck you granpa John!");
+                break;        
+        }
+        document.querySelector('#display').value = answer;
+    
     operatorClicked = false;
     numberClicked = false;
+    numb1 = answer
 }
 
 
